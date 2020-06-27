@@ -1,11 +1,14 @@
+import 'package:FlutterStateManagementDemo/model/CartModel.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'Product.dart';
 
 class ProductList extends StatelessWidget {
-  final products;
-  final ValueSetter<int> onProductTap;
-
-  const ProductList({Key key, this.products, this.onProductTap})
-      : super(key: key);
+  final products = List<Product>.generate(
+      20,
+      (index) => Product(
+          "Product no $index", "This is the details of Product number $index"));
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,12 @@ class ProductList extends StatelessWidget {
           trailing: IconButton(
             icon: Icon(Icons.add_shopping_cart),
             onPressed: () {
-              onProductTap(index);
+              Provider.of<CartModel>(context, listen: false)
+                  .add(products[index]);
+
+              SnackBar s =
+                  SnackBar(content: Text("Product No $index added to cart"));
+              Scaffold.of(context).showSnackBar(s);
             },
           ),
         );

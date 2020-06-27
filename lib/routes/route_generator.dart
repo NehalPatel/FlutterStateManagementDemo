@@ -13,15 +13,7 @@ class RouteGenerator {
       case '/':
         return MaterialPageRoute(builder: (_) => HomePage());
       case '/cart':
-        // Validation of correct data type
-        if (args is List<Product>) {
-          return MaterialPageRoute(
-            builder: (_) => Cart(args),
-          );
-        }
-        // If args is not of the correct type, return an error page.
-        // You can also throw an exception while in development.
-        return _errorRoute();
+        return MaterialPageRoute(builder: (_) => Cart());
 
       // case '/settings':
       //   return MaterialPageRoute(builder: (_) => ThirdPage());
