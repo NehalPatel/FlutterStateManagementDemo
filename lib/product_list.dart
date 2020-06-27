@@ -24,11 +24,15 @@ class ProductList extends StatelessWidget {
           trailing: IconButton(
             icon: Icon(Icons.add_shopping_cart),
             onPressed: () {
-              Provider.of<CartModel>(context, listen: false)
-                  .add(products[index]);
+              context.read<CartModel>().add(products[index]);
 
-              SnackBar s =
-                  SnackBar(content: Text("Product No $index added to cart"));
+              // Provider.of<CartModel>(context, listen: false)
+              //     .add(products[index]);
+
+              SnackBar s = SnackBar(
+                content: Text("Product No $index added to cart"),
+                duration: Duration(milliseconds: 300),
+              );
               Scaffold.of(context).showSnackBar(s);
             },
           ),
