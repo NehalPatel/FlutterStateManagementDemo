@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../HomePage.dart';
 import '../Product.dart';
 import '../cart.dart';
-import '../main.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
